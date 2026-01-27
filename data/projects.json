@@ -1,0 +1,16 @@
+[
+  {
+  "name": "uilibs.xrer.space",
+  "description": "Just a website with some a ui libraries for luau script's.",
+  "url": "https://github.com/0xXrer/uilibraries",
+  "image": "/projects/uilibs.png",
+  "tags": [
+    "TypeScript",
+    "React",
+    "Shadcn",
+    "Next.js",
+    "Tawilwindcss",
+    "Supabase"
+  ]
+}
+]
