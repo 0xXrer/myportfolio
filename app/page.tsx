@@ -1,106 +1,113 @@
 import { RiGithubFill, RiDiscordFill, RiExternalLinkFill } from "@remixicon/react"
-import Image from "next/image"
-import Link from "next/link"
-import projects from "@/data/projects.json"
+
+const projects = [
+  {
+    name: "MathOBF-lua",
+    description: "Multi-layer VM obfuscator for Lua",
+    tech: ["Lua", "Security", "Reverse Engineering"],
+    github: "https://github.com/0xXrer/MathOBF-lua",
+  },
+  {
+    name: "Process-Guard",
+    description: "Real-time injection detection for Windows",
+    tech: ["Rust", "ML", "ETW"],
+    github: "https://github.com/0xXrer/Process-Guard",
+  },
+  {
+    name: "react-material-3-pure",
+    description: "Material Design 3 for React",
+    tech: ["TypeScript", "React", "UI"],
+    github: "https://github.com/0xXrer/react-material-3-pure",
+    demo: "https://react-material-3-pure.vercel.app",
+  },
+  {
+    name: "ff",
+    description: "Blazingly fast file finder",
+    tech: ["C++17", "CLI"],
+    github: "https://github.com/0xXrer/ff",
+  },
+]
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-background text-foreground">
-      <div className="max-w-3xl mx-auto px-6 py-16">
-        {/* Header */}
-        <header className="flex items-center gap-5 mb-16">
-          <Image
-            src="https://github.com/0xXrer.png"
-            alt="Avatar"
-            width={72}
-            height={72}
-            className="rounded-full ring-2 ring-border"
-          />
-          <div>
-            <h1 className="text-2xl font-semibold tracking-tight">elowen.im</h1>
-            <p className="text-muted-foreground mt-1">developer</p>
-            <div className="flex items-center gap-4 mt-3">
-              <a
-                href="https://github.com/0xXrer"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-                aria-label="GitHub"
-              >
-                <RiGithubFill className="w-5 h-5" />
-              </a>
-              <a
-                href="https://discord.com/users/1287660832133611520"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-                aria-label="Discord"
-              >
-                <RiDiscordFill className="w-5 h-5" />
-              </a>
-            </div>
+      <div className="mx-auto flex min-h-screen w-full max-w-4xl flex-col px-6 py-20">
+        <header className="flex flex-col gap-6">
+          <div className="space-y-3">
+            <p className="text-sm tracking-[0.3em] text-[#888]">PORTFOLIO</p>
+            <h1 className="text-4xl font-semibold tracking-tight">xrer</h1>
+            <p className="font-mono text-sm text-[#888]">low-level · reverse-engineer · ml</p>
+          </div>
+          <div className="flex items-center gap-4">
+            <a
+              href="https://github.com/0xXrer"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#888] transition-colors hover:text-foreground"
+              aria-label="GitHub"
+            >
+              <RiGithubFill className="h-5 w-5" />
+            </a>
+            <a
+              href="https://discord.com/users/1287660832133611520"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#888] transition-colors hover:text-foreground"
+              aria-label="Discord"
+            >
+              <RiDiscordFill className="h-5 w-5" />
+            </a>
           </div>
         </header>
 
-        {/* Projects */}
-        <section>
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-sm font-medium uppercase tracking-wider text-muted-foreground">
-              Projects
-            </h2>
-            {/* <Link
-              href="/admin"
-              className="text-xs text-muted-foreground hover:text-foreground transition-colors"
-            >
-              + add
-            </Link> */}
+        <section className="mt-16 space-y-6">
+          <div className="flex items-center justify-between">
+            <h2 className="text-xs uppercase tracking-[0.3em] text-[#888]">Projects</h2>
           </div>
-
-          {projects.length === 0 ? (
-            <p className="text-muted-foreground text-sm">No projects yet.</p>
-          ) : (
-            <div className="grid gap-6 sm:grid-cols-2">
-              {projects.map((project, index) => (
-                <a
-                  key={index}
-                  href={project.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group block rounded-xl border border-border bg-card overflow-hidden hover:border-muted-foreground/40 transition-all"
-                >
-                  <div className="relative aspect-video overflow-hidden bg-secondary">
-                    <Image
-                      src={project.image || "/projects/default.jpg"}
-                      alt={project.name}
-                      fill
-                      className="object-cover group-hover:scale-[1.03] transition-transform duration-500"
-                    />
+          <div className="grid gap-6 md:grid-cols-2">
+            {projects.map((project) => (
+              <article
+                key={project.name}
+                className="flex h-full flex-col justify-between rounded-2xl border border-white/10 px-5 py-6 transition-transform duration-300 ease-out hover:scale-[1.02] hover:border-white/30"
+              >
+                <div className="space-y-4">
+                  <div className="flex items-start justify-between gap-4">
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-lg font-semibold transition-colors hover:text-[#888]"
+                    >
+                      {project.name}
+                    </a>
+                    <RiExternalLinkFill className="h-4 w-4 text-[#888]" />
                   </div>
-                  <div className="p-4">
-                    <div className="flex items-center justify-between">
-                      <h3 className="font-medium">{project.name}</h3>
-                      <RiExternalLinkFill className="w-4 h-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </div>
-                    <p className="text-sm text-muted-foreground mt-1 line-clamp-2">
-                      {project.description}
-                    </p>
-                    {project.tags.length > 0 && (
-                      <div className="flex gap-1.5 flex-wrap mt-3">
-                        {project.tags.map((tag, tagIndex) => (
-                          <span
-                            key={tagIndex}
-                            className="text-[11px] px-2 py-0.5 bg-secondary text-muted-foreground rounded-full"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </a>
-              ))}
-            </div>
-          )}
+                  <p className="text-sm text-[#888]">{project.description}</p>
+                </div>
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {project.tech.map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full border border-white/10 px-2.5 py-1 text-[11px] font-mono text-[#888]"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                {project.demo && (
+                  <a
+                    href={project.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-6 inline-flex w-fit items-center gap-2 text-xs font-mono text-[#888] transition-colors hover:text-foreground"
+                  >
+                    Live demo
+                    <RiExternalLinkFill className="h-3.5 w-3.5" />
+                  </a>
+                )}
+              </article>
+            ))}
+          </div>
         </section>
       </div>
     </main>
