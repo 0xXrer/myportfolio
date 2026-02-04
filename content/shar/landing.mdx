@@ -1,0 +1,67 @@
+# SHAR
+
+Policy-first execution layer for WASM providing isolation without virtualization (behavior-level).
+
+:::callout Scope
+SHAR runs WASM with strict, explicit policy gates. It is not a VM, not a container runtime, and not a UI framework.
+:::
+
+## What exists today
+
+- CLI: `shar run <app_dir>` in `main.rs`.
+- Policy model + TOML parsing in `policy.rs`:
+  - `fs_read: Vec<PathBuf>`
+  - `fs_write: Vec<PathBuf>`
+  - `env: BTreeSet<String>`
+  - `net_outbound: bool`
+- Wasmtime + WASI preview1 runner in `runner.rs`.
+- Deny-by-default behavior:
+  - FS only via explicit preopens from policy.
+  - Env only for whitelisted keys.
+  - Network off unless `net_outbound = true`.
+- Audit system in `audit.rs` with JSONL events:
+  - `start`, `stdout`, `stderr`, `policy_denied`, `exit`
+  - `run_hash` included in every event
+- Deterministic metadata:
+  - `run_hash = sha256(wasm bytes + policy manifest + SHAR version)` in `runner.rs`.
+  - Stable event emission order (append-only audit log).
+  - Stable JSON key order via typed struct serialization.
+- Tests exist: policy parsing, audit order/structure, run_hash determinism, integration test (one ignored).
+- README already has a technical section comparing SHAR vs containers/VMs/runtimes.
+
+## What it does NOT do
+
+- Not a WASM engine or JIT.
+- Not a container runtime or VM.
+- Not a UI framework.
+- Not orchestration.
+
+## Quickstart
+
+**app_dir layout**
+
+```
+app_dir/
+  app.wasm
+  app.toml
+```
+
+**app.toml**
+
+```
+fs_read = ["/data", "/etc/hosts"]
+fs_write = ["/tmp"]
+env = ["API_TOKEN", "LOG_LEVEL"]
+net_outbound = false
+```
+
+**Run**
+
+```
+shar run <app_dir>
+```
+
+:::actions
+[Docs](/shar/docs) default
+[Roadmap](/shar/roadmap) outline
+:::

@@ -1,0 +1,17 @@
+# Policy
+
+## fs_read / fs_write
+
+`fs_read` and `fs_write` are allowlists of root paths. Only those roots are preopened for the module. Everything else is denied by default.
+
+## env
+
+`env` is a whitelist of allowed environment variable keys. Any key not listed is denied.
+
+## net_outbound
+
+`net_outbound` is a boolean gate. When `false`, all network access is denied. When `true`, outbound networking is allowed.
+
+:::callout Not implemented yet
+Network allowlists are not implemented yet. The only control is the boolean flag.
+:::

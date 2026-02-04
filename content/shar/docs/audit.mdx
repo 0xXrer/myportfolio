@@ -1,0 +1,22 @@
+# Audit
+
+SHAR writes an append-only JSONL audit log.
+
+## Events
+
+- `start`
+- `stdout`
+- `stderr`
+- `policy_denied`
+- `exit`
+
+Every event includes the `run_hash`.
+
+## run_hash
+
+`run_hash = sha256(wasm bytes + policy manifest + SHAR version)`
+
+## Determinism
+
+- Event emission order is stable and append-only.
+- JSON key order is stable due to typed struct serialization.
