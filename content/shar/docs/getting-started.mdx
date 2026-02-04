@@ -4,17 +4,17 @@
 
 SHAR runs WASI preview1 modules through Wasmtime. No other runtime targets are implemented yet.
 
-## Folder layout
+## App directory layout
 
-```
+```text
 app_dir/
   app.wasm
   app.toml
 ```
 
-## Example manifest
+## Policy manifest (app.toml)
 
-```
+```toml
 fs_read = ["/data", "/etc/hosts"]
 fs_write = ["/tmp"]
 env = ["API_TOKEN", "LOG_LEVEL"]
@@ -27,6 +27,10 @@ net_outbound = true
 - Environment variables are denied unless explicitly listed in `env`.
 - Networking is disabled unless `net_outbound = true`.
 
-:::callout Run
+## Run
+
+```bash
+shar run <app_dir>
+```
+
 Use `shar run <app_dir>` to execute the WASM in the directory.
-:::
