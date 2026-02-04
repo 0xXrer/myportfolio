@@ -1,7 +1,7 @@
 import React from "react"
 
 type ComponentProps = Record<string, unknown>
-type Components = Record<string, React.ComponentType<ComponentProps>>
+type Components = Record<string, React.ComponentType<any>>
 
 type CompileOptions = {
   source: string
