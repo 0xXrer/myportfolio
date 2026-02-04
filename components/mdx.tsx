@@ -73,7 +73,7 @@ const mdxComponents = {
     const isBlock = className?.includes("language-")
     const styles = isBlock
       ? "font-mono text-[0.75rem] text-[#d6d6d6]"
-      : "rounded-md bg-white/5 px-1.5 py-0.5 font-mono text-[0.75rem] text-[#e2e2e2] ring-1 ring-white/10"
+      : "px-1.5 py-0.5 font-mono text-[0.75rem] text-[#e2e2e2]"
 
     return <code className={[styles, className].filter(Boolean).join(" ")} {...props} />
   },
