@@ -67,10 +67,18 @@ const mdxComponents = {
     <li className="leading-relaxed" {...props} />
   ),
   pre: (props: React.HTMLAttributes<HTMLPreElement>) => (
-    <pre className="rounded-xl border border-white/10 bg-black/40 p-4 text-xs text-foreground overflow-x-auto" {...props} />
+    <pre className="overflow-x-auto rounded-xl border border-white/10 bg-black/60 p-4 text-xs text-[#d6d6d6]" {...props} />
   ),
-  code: (props: React.HTMLAttributes<HTMLElement>) => (
-    <code className="rounded bg-white/10 px-1 py-0.5 font-mono text-xs" {...props} />
+  code: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => {
+    const isBlock = className?.includes("language-")
+    const styles = isBlock
+      ? "font-mono text-[0.75rem] text-[#d6d6d6]"
+      : "rounded-md bg-white/5 px-1.5 py-0.5 font-mono text-[0.75rem] text-[#e2e2e2] ring-1 ring-white/10"
+
+    return <code className={[styles, className].filter(Boolean).join(" ")} {...props} />
+  },
+  strong: (props: React.HTMLAttributes<HTMLElement>) => (
+    <strong className="font-semibold text-foreground/90" {...props} />
   ),
   hr: () => <Separator className="my-6" />,
   Callout,
