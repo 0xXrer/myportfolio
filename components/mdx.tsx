@@ -1,5 +1,4 @@
 import Link from "next/link"
-
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
@@ -66,36 +65,19 @@ const mdxComponents = {
   li: (props: React.HTMLAttributes<HTMLLIElement>) => (
     <li className="leading-relaxed" {...props} />
   ),
-pre: (props: React.HTMLAttributes<HTMLPreElement>) => (
-  <pre
-    className="overflow-x-auto rounded-none border-0 bg-transparent p-0"
-    {...props}
-  />
-),
-code: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => {
-  const isBlock = className?.includes("language-")
-
-  if (isBlock) {
-    return (
-      <code
-        className={["font-mono text-[0.75rem] text-[#d6d6d6]", className]
-          .filter(Boolean)
-          .join(" ")}
-        {...props}
-      />
-    )
-  }
-
-  return (
-    <code
-      className="rounded-md bg-white/5 px-1.5 py-0.5 font-mono text-[0.75rem] text-[#e2e2e2] ring-1 ring-white/10"
-      {...props}
-    />
-  )
-},
-strong: (props: React.HTMLAttributes<HTMLElement>) => (
-  <strong className="font-semibold text-foreground/90" {...props} />
-),
+  pre: (props: React.HTMLAttributes<HTMLPreElement>) => (
+    <pre className="overflow-x-auto p-4 text-xs text-[#d6d6d6]" {...props} />
+  ),
+  code: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => {
+    const isBlock = className?.includes("language-")
+    const styles = isBlock
+      ? "font-mono text-[0.75rem] text-[#d6d6d6]"
+      : "bg-white/5 px-1.5 py-0.5 font-mono text-[0.75rem] text-[#e2e2e2] ring-1 ring-white/10"
+    return <code className={[styles, className].filter(Boolean).join(" ")} {...props} />
+  },
+  strong: (props: React.HTMLAttributes<HTMLElement>) => (
+    <strong className="font-semibold text-foreground" {...props} />
+  ),
   hr: () => <Separator className="my-6" />,
   Callout,
   ButtonLink,
