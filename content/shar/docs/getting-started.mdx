@@ -1,0 +1,32 @@
+# Getting Started
+
+## What SHAR runs today
+
+SHAR runs WASI preview1 modules through Wasmtime. No other runtime targets are implemented yet.
+
+## Folder layout
+
+```
+app_dir/
+  app.wasm
+  app.toml
+```
+
+## Example manifest
+
+```
+fs_read = ["/data", "/etc/hosts"]
+fs_write = ["/tmp"]
+env = ["API_TOKEN", "LOG_LEVEL"]
+net_outbound = true
+```
+
+## Deny-by-default behavior
+
+- File system access is denied unless a path is preopened via `fs_read` or `fs_write`.
+- Environment variables are denied unless explicitly listed in `env`.
+- Networking is disabled unless `net_outbound = true`.
+
+:::callout Run
+Use `shar run <app_dir>` to execute the WASM in the directory.
+:::

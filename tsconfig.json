@@ -19,7 +19,8 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "next-mdx-remote/*": ["lib/next-mdx-remote/*"]
     }
   },
   "include": [
