@@ -1,0 +1,30 @@
+# Signing
+
+## What is signed
+
+SHAR signs the WASM bytes and the policy manifest in the app directory.
+
+## Digest
+
+The digest is `sha256(wasm bytes + policy manifest + SHAR version)`.
+
+## Files
+
+Signatures are Ed25519 and stored in `shar.sig` inside the app directory.
+
+## Verify
+
+Verification reads `shar.sig` and emits an `error` audit event on failure.
+
+## CLI
+
+```bash
+shar sign <app_dir>
+shar verify <app_dir>
+```
+
+Require a signature at run time:
+
+```bash
+shar run --require-signature --pub <key> <app_dir>
+```

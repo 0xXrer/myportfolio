@@ -2,7 +2,9 @@
 
 ## What SHAR runs today
 
-SHAR runs WASI preview1 modules through Wasmtime. No other runtime targets are implemented yet.
+SHAR runs WASI preview1 modules through Wasmtime by default.
+
+Optional flags can switch to WASI preview2 mode. Component Model execution is available behind `component = true` and is experimental.
 
 ## App directory layout
 
@@ -19,6 +21,13 @@ fs_read = ["/data", "/etc/hosts"]
 fs_write = ["/tmp"]
 env = ["API_TOKEN", "LOG_LEVEL"]
 net_outbound = true
+```
+
+## Optional flags (app.toml)
+
+```toml
+wasi_preview2 = true
+component = true
 ```
 
 ## Deny-by-default behavior

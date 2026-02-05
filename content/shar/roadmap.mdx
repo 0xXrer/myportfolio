@@ -1,9 +1,18 @@
 # Roadmap
 
-Ideas / Not implemented yet.
+## Implemented
 
-- WASI preview2 / Component Model support (not implemented yet).
-- Network allowlist instead of a boolean flag (not implemented yet).
-- Better limits and timeouts (not implemented yet).
-- Optional OCI or containerd integration (not implemented yet).
-- Signing and attestation (not implemented yet).
+- Optional WASI preview2 execution mode via `wasi_preview2 = true`.
+- Optional execution limits via `limits` (fuel, wall_time, max_output_bytes, memory).
+- Thin OCI wrapper: `shar oci run <bundle_dir>`.
+- Signing and verification: `shar sign`, `shar verify`, `shar run --require-signature`.
+
+## Experimental
+
+- Component Model execution behind `component = true`.
+
+## Not implemented yet
+
+- Network allowlist (only boolean `net_outbound` exists).
+- Full WASIX support.
+- Advanced determinism (clock/random override).
