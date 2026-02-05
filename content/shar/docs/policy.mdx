@@ -15,3 +15,16 @@
 :::callout Not implemented yet
 Network allowlists are not implemented yet. The only control is the boolean flag.
 :::
+
+## limits
+
+`limits` configures optional execution limits.
+
+Supported fields:
+
+- `fuel`
+- `wall_time`
+- `max_output_bytes`
+- `memory`
+
+When a configured limit is enforced and hit, SHAR emits `limit_hit`. If a limit is configured but not enforced, SHAR emits `limit_unenforced`.

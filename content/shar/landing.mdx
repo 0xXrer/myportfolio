@@ -15,6 +15,11 @@ SHAR runs WASM with strict, explicit policy gates. It is not a VM, not a contain
   - `env: BTreeSet<String>`
   - `net_outbound: bool`
 - Wasmtime + WASI preview1 runner in `runner.rs`.
+- Optional WASI preview2 execution mode via `wasi_preview2 = true`.
+  - Component Model execution behind `component = true` (experimental).
+- Optional execution limits via `limits`: fuel, wall_time, max_output_bytes, memory.
+- Thin OCI wrapper: `shar oci run <bundle_dir>` delegates to `shar run`.
+- Signing + verification: `shar sign`, `shar verify`, `shar run --require-signature`.
 - Deny-by-default behavior:
   - FS only via explicit preopens from policy.
   - Env only for whitelisted keys.

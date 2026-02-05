@@ -8,9 +8,22 @@ SHAR writes an append-only JSONL audit log.
 - `stdout`
 - `stderr`
 - `policy_denied`
+- `limit_hit`
+- `limit_unenforced`
+- `error`
 - `exit`
 
 Every event includes the `run_hash`.
+
+## Event details
+
+- `limit_hit` is emitted when an enforced limit is reached.
+- `limit_unenforced` is emitted when a limit is configured but not enforced.
+- `error` is emitted on verification failures and other hard errors.
+
+## start event fields
+
+The `start` event includes `signature` and optional `signature_verified` when a signature is present.
 
 ## run_hash
 

@@ -1,0 +1,11 @@
+# OCI
+
+## shar oci run
+
+`shar oci run <bundle_dir>` reads the OCI `config.json` and delegates execution to `shar run`.
+
+This is a thin wrapper around the existing SHAR runner.
+
+## What this is not
+
+SHAR is not a container runtime. It does not provide namespaces, mounts, or orchestration.
